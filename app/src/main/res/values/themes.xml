@@ -6,4 +6,9 @@
     </style>
 
     <style name="Theme.BondoMan" parent="Base.Theme.BondoMan" />
+    <style name="Theme.App.SplashScreeen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/bondo_man_logo</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.BondoMan</item>
+    </style>
 </resources>
