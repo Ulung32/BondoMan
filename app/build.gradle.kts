@@ -26,6 +26,12 @@ android {
             )
         }
     }
+
+    buildFeatures{
+        dataBinding = true
+        viewBinding = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -34,9 +40,6 @@ android {
         jvmTarget = "1.8"
     }
     buildToolsVersion = "34.0.0"
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
@@ -51,6 +54,16 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
+
+    implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("javax.inject:javax.inject:1")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.activity:activity-ktx:1.8.2")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
     implementation("com.google.android.material:material:1.2.0-alpha06")
