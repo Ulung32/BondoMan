@@ -8,12 +8,26 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Chart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.db.williamchart.view.DonutChartView
+        android:id="@+id/donutChart"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:chart_donutBackgroundColor="#42A5F5"
+        app:chart_donutRoundCorners="true"
+        app:chart_donutThickness="15dp"
+        app:chart_donutTotal="200"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
