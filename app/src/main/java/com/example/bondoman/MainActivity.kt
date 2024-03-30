@@ -3,11 +3,6 @@ package com.example.bondoman
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.bondoman.Room.TransactionEntity
-import com.example.bondoman.ui.Transaction.TransactionAdapter
-import java.time.LocalDateTime
 
 import androidx.navigation.NavController
 import androidx.navigation.findNavController

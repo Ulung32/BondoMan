@@ -30,9 +30,3 @@
         app:layout_constraintRight_toRightOf="parent">
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-
