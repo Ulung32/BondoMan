@@ -9,7 +9,7 @@ import com.example.bondoman.Room.TransactionEntity
 import com.example.bondoman.databinding.TransactionItemBinding
 
 
-class TransactionAdapter (private val listData: List<TransactionEntity>) : RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
+class TransactionAdapter (private val listData: Array<TransactionEntity>) : RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
     class TransactionViewHolder private constructor(val binding: TransactionItemBinding) : RecyclerView.ViewHolder(binding.root){
         companion object{
             fun from (parent: ViewGroup): TransactionViewHolder{
@@ -33,7 +33,7 @@ class TransactionAdapter (private val listData: List<TransactionEntity>) : Recyc
         holder.binding.categoryTv.text = listData[position].category
         holder.binding.priceTv.text = "Rp. ".plus(listData[position].nominal)
         holder.binding.locationTv.text = "TO DO!!!"
-        holder.binding.dateTv.text = listData[position].date.toString()
+        holder.binding.dateTv.text = listData[position].date
     }
 
 }
