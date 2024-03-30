@@ -32,7 +32,7 @@ class TransactionAdapter (private val listData: Array<TransactionEntity>) : Recy
         holder.binding.titleTv.text = listData[position].title
         holder.binding.categoryTv.text = listData[position].category
         holder.binding.priceTv.text = "Rp. ".plus(listData[position].nominal)
-        holder.binding.locationTv.text = "TO DO!!!"
+        holder.binding.locationTv.text = listData[position].latitude.toString() + ", " + listData[position].longitude.toString()
         holder.binding.dateTv.text = listData[position].date
     }
 
