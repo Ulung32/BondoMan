@@ -36,8 +36,9 @@
     </fragment>
     <fragment
         android:id="@+id/transactionFragment"
-        android:name="com.example.bondoman.ui.TransactionFragment"
-        android:label="TransactionFragment" >
+        android:name="com.example.bondoman.ui.Transaction.TransactionFragment"
+        android:label="TransactionFragment"
+        tools:layout="@layout/fragment_transaction">
         <action
             android:id="@+id/action_transactionFragment_to_chartFragment"
             app:destination="@id/chartFragment" />
