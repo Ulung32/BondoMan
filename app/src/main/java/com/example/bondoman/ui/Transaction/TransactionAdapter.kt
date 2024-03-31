@@ -2,22 +2,25 @@ package com.example.bondoman.ui.Transaction
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bondoman.AddTransactionActivity
 import com.example.bondoman.EditTransactionActivity
 import com.example.bondoman.Repository.MainRepository
 import com.example.bondoman.Room.TransactionEntity
 import com.example.bondoman.databinding.TransactionItemBinding
+import com.example.bondoman.utils.LocationClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class TransactionAdapter (private val context: Context,private val listData: Array<TransactionEntity>) : RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
+
+    val locationClient = LocationClient(context, AppCompatActivity())
     class TransactionViewHolder private constructor(val binding: TransactionItemBinding) : RecyclerView.ViewHolder(binding.root){
         companion object{
             fun from (parent: ViewGroup): TransactionViewHolder{
@@ -40,8 +43,22 @@ class TransactionAdapter (private val context: Context,private val listData: Arr
         holder.binding.titleTv.text = listData[position].title
         holder.binding.categoryTv.text = listData[position].category
         holder.binding.priceTv.text = "Rp. ".plus(listData[position].nominal)
-        holder.binding.locationTv.text = listData[position].latitude.toString() + ", " + listData[position].longitude.toString()
+        holder.binding.locationTv.text = locationClient.getLocationName(listData[position].latitude, listData[position].longitude)
         holder.binding.dateTv.text = listData[position].date
+
+        holder.binding.locationTv.setOnClickListener {
+            val latitude = listData[position].latitude
+            val longitude = listData[position].longitude
+            val locationUri = "geo:$latitude,$longitude?q=$latitude,$longitude"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(locationUri))
+            intent.setPackage("com.google.android.apps.maps")
+            if (intent.resolveActivity(context.packageManager) != null) {
+                context.startActivity(intent)
+            } else {
+                Toast.makeText(context, "Google Maps app is not installed", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         holder.binding.deleteTransactionButton.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch{
                 val repository = MainRepository(context)
