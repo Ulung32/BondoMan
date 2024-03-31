@@ -23,6 +23,19 @@ class AddTransactionActivity : AppCompatActivity() {
 
         locationClient.requestLocationPermissions()
 
+        // Mengambil data dari Intent
+        val randomTitle = intent.getStringExtra("RANDOM_TITLE")
+        val randomNominal = intent.getIntExtra("RANDOM_NOMINAL", 0)
+
+        // Mengikat data ke view
+        if (!randomTitle.isNullOrEmpty()) {
+            binding.titleEditText.setText(randomTitle)
+        }
+
+        if (randomNominal != 0) {
+            binding.editTextNominal.setText(randomNominal.toString())
+        }
+
         binding.insertTransactionBtn.setOnClickListener {
             val title = binding.titleEditText.text.toString()
             val nominal = binding.editTextNominal.text.toString()

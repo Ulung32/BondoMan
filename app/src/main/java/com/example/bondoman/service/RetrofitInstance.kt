@@ -7,7 +7,7 @@ import okhttp3.OkHttpClient
 
 class RetrofitClient {
     companion object {
-        private const val TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaW0iOiIxMzUyMTE2MCIsImlhdCI6MTcxMTg3NzQ2NiwiZXhwIjoxNzExODc3NzY2fQ.gXcWW2rWjE0jNF1StQGWCR8_OvyVS7DioSti9ojrkgI"
+        private const val TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaW0iOiIxMzUyMTE2MCIsImlhdCI6MTcxMTg4MTEyNiwiZXhwIjoxNzExODgxNDI2fQ.dUoFi6jQnsUkUEE10HHv2iXHWv6xeWxO2hVKKnxiOyA"
         private val client = OkHttpClient.Builder()
             .addInterceptor(AuthInterceptor(TOKEN))
             .build()
