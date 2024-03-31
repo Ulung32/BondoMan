@@ -45,27 +45,12 @@ class TransactionFragment() : Fragment() {
 
         transactionViewModel.transactionList.observe(viewLifecycleOwner){ data ->
             // Update RecyclerView adapter with new transaction data
-            binding.transactionRv.adapter = TransactionAdapter(data)
+            binding.transactionRv.adapter = TransactionAdapter(requireContext(), data)
             binding.addTransactionBtn.setOnClickListener{
                 val intent = Intent(context, AddTransactionActivity::class.java)
                 context?.startActivity(intent)
             }
         }
-//
-//        val data = arrayOf(
-//            TransactionEntity(1, "title1", "pemasukan", 10000, 1, 1, LocalDateTime.now()),
-//            TransactionEntity(2, "title2", "pemasukan", 10000, 1, 1, LocalDateTime.now()),
-//            TransactionEntity(3, "title3", "pemasukan", 10000, 1, 1, LocalDateTime.now()),
-//            TransactionEntity(2, "title2", "pemasukan", 10000, 1, 1, LocalDateTime.now()),
-//            TransactionEntity(2, "title2", "pemasukan", 10000, 1, 1, LocalDateTime.now()),
-//            TransactionEntity(2, "title2", "pemasukan", 10000, 1, 1, LocalDateTime.now()),
-//            TransactionEntity(2, "title2", "pemasukan", 10000, 1, 1, LocalDateTime.now()),
-//            TransactionEntity(2, "title2", "pemasukan", 10000, 1, 1, LocalDateTime.now()),
-//            TransactionEntity(2, "title2", "pemasukan", 10000, 1, 1, LocalDateTime.now()),
-//            TransactionEntity(2, "title2", "pemasukan", 10000, 1, 1, LocalDateTime.now()),
-//        )
-//
-//        binding.transactionRv.adapter = TransactionAdapter(data)
     }
 
 }
