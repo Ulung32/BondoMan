@@ -12,7 +12,7 @@ data class TransactionEntity(
     val title: String,
     val category: String,
     val nominal: Int,
-    val longitude: Int,
-    val latitude: Int,
+    val longitude: Double,
+    val latitude: Double,
     val date: String
 )
