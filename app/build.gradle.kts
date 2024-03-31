@@ -82,4 +82,7 @@ dependencies {
     implementation("pub.devrel:easypermissions:3.0.0")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
 
+    //excel
+    implementation("org.apache.poi:poi:5.2.4")
+    implementation("org.apache.poi:poi-ooxml:5.2.4")
 }

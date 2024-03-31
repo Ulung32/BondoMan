@@ -63,5 +63,17 @@
         <action
             android:id="@+id/action_settingFragment_to_chartFragment"
             app:destination="@id/chartFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_saveTransactionFragment"
+            app:destination="@id/saveTransactionFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/saveTransactionFragment"
+        android:name="com.example.bondoman.ui.SaveTransactionFragment"
+        android:label="fragment_save_transaction"
+        tools:layout="@layout/fragment_save_transaction">
+        <action
+            android:id="@+id/action_saveTransactionFragment_to_settingFragment"
+            app:destination="@id/settingFragment"/>
     </fragment>
 </navigation>
