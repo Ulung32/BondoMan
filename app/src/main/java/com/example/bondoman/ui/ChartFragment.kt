@@ -50,9 +50,6 @@ class ChartFragment : Fragment() {
             var outcomeFraction = data.filter { it.category == "PENGELUARAN" }.size.toFloat()/data.size*200
             var otherFraction = 200f-incomeFraction-outcomeFraction
 
-            Log.v("wf", data.get(0).category.toString())
-            Log.v("wf", data.get(1).category.toString())
-            Log.v("wf", data.get(2).category.toString())
             Log.v("wf", incomeFraction.toString())
             Log.v("wf", outcomeFraction.toString())
             Log.v("wf", otherFraction.toString())
