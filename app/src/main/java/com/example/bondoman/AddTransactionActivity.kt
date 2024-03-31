@@ -1,25 +1,16 @@
 package com.example.bondoman
 
-import android.Manifest
-import android.content.Context
 import android.content.Intent
-import android.location.Address
-import android.location.Geocoder
-import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.bondoman.Repository.MainRepository
 import com.example.bondoman.Room.TransactionEntity
 import com.example.bondoman.databinding.ActivityAddTransactionBinding
-import com.example.bondoman.util.LocationClient
+import com.example.bondoman.utils.LocationClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import pub.devrel.easypermissions.EasyPermissions
 import java.time.LocalDateTime
 
 class AddTransactionActivity : AppCompatActivity() {
@@ -42,8 +33,8 @@ class AddTransactionActivity : AppCompatActivity() {
                 var longitude: Double
                 if(!locationClient.haveLocationPermissions()){
                     //default
-                    latitude = 0.0
-                    longitude = 0.0
+                    latitude = -6.890430928361903
+                    longitude = 107.61095236101004
                 }else{
                     val location = locationClient.getLocationUpdates()
                     latitude = location.latitude

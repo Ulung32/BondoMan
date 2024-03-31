@@ -1,4 +1,4 @@
-package com.example.bondoman.ui.utils
+package com.example.bondoman.utils
 
 import android.content.BroadcastReceiver
 import android.content.Context

@@ -7,7 +7,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 import androidx.navigation.NavController
 import com.example.bondoman.ui.NavbarFragment
-import com.example.bondoman.ui.utils.NetworkConnectivityLiveData
+import com.example.bondoman.utils.NetworkConnectivityLiveData
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
