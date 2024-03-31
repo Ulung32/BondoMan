@@ -75,4 +75,10 @@ dependencies {
 
     annotationProcessor ("androidx.room:room-compiler:2.6.1")
     implementation("com.diogobernardino:williamchart:3.10.1")
+
+    //location
+    implementation("com.google.android.gms:play-services-location:21.2.0")
+
+    implementation("pub.devrel:easypermissions:3.0.0")
+
 }
