@@ -74,6 +74,7 @@ dependencies {
     kapt("androidx.room:room-compiler:2.6.1")
 
     annotationProcessor ("androidx.room:room-compiler:2.6.1")
+    implementation("com.diogobernardino:williamchart:3.10.1")
 
     //location
     implementation("com.google.android.gms:play-services-location:21.2.0")
