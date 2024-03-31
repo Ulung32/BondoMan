@@ -74,4 +74,16 @@ dependencies {
     kapt("androidx.room:room-compiler:2.6.1")
 
     annotationProcessor ("androidx.room:room-compiler:2.6.1")
+
+    // CameraX
+    implementation("androidx.camera:camera-core:1.2.0")
+    implementation("androidx.camera:camera-camera2:1.2.0")
+    implementation("androidx.camera:camera-lifecycle:1.2.0")
+    implementation("androidx.camera:camera-view:1.2.0-alpha03")
+
+    // Retrofit, GSON, okhttp
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.google.code.gson:gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.9.2")
 }
