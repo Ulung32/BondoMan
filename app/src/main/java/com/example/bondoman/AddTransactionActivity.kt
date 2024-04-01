@@ -9,6 +9,10 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.bondoman.Repository.MainRepository
 import com.example.bondoman.Room.TransactionEntity
@@ -16,10 +20,8 @@ import com.example.bondoman.databinding.ActivityAddTransactionBinding
 import com.example.bondoman.util.LocationClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import pub.devrel.easypermissions.EasyPermissions
 import java.time.LocalDateTime
 
 class AddTransactionActivity : AppCompatActivity() {
@@ -35,7 +37,7 @@ class AddTransactionActivity : AppCompatActivity() {
         binding.insertTransactionBtn.setOnClickListener {
             val title = binding.titleEditText.text.toString()
             val nominal = binding.editTextNominal.text.toString()
-            val category = binding.categoryEditText.text.toString()
+            val category = binding.category.text.toString()
 
             CoroutineScope(Dispatchers.IO).launch {
                 var latitude: Double
@@ -72,6 +74,14 @@ class AddTransactionActivity : AppCompatActivity() {
                 }
             }
         }
+
+        val items = listOf("PEMASUKAN", "PENGELUARAN")
+
+        val autoComplete = findViewById<AutoCompleteTextView>(R.id.category)
+        val adapter = ArrayAdapter(this, R.layout.list_item, items)
+
+        autoComplete.setAdapter(adapter)
+
     }
 
 }

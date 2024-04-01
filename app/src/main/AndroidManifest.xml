@@ -18,6 +18,11 @@
         android:theme="@style/Theme.BondoMan"
         tools:targetApi="31">
         <activity
+            android:name=".ErrorPageActivity"
+            android:exported="false"
+            android:label="@string/title_activity_error_page"
+            android:theme="@style/Theme.BondoMan" />
+        <activity
             android:name=".EditTransactionActivity"
             android:exported="false" />
         <activity
