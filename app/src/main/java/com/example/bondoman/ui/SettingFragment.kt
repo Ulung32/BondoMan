@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.bondoman.R
 import com.example.bondoman.databinding.FragmentSettingBinding
+import com.example.bondoman.utils.ExcelUtil
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +26,7 @@ class SettingFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private val excelUtil by lazy { ExcelUtil(requireContext()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,7 @@ class SettingFragment : Fragment() {
             val intent = Intent("ACTION_RANDOMIZE_TRANSACTION")
             requireContext().sendBroadcast(intent)
         }
+
         return binding.root
     }
 

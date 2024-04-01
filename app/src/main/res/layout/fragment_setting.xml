@@ -8,6 +8,7 @@
 
     <!-- TODO: Update blank fragment layout -->
     <!-- TODO: monggo di styling hehehe -->
+
     <TextView
         android:id="@+id/saveTransaction"
         android:layout_width="wrap_content"

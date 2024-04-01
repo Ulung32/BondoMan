@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.action == "ACTION_RANDOMIZE_TRANSACTION") {
-                val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9') // Karakter yang mungkin
+                val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
                 val randomTitleValue = (1..10)
                     .map { kotlin.random.Random.nextInt(0, charPool.size) }
                     .map(charPool::get)
