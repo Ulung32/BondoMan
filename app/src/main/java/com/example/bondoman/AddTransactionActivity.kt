@@ -8,7 +8,7 @@ import android.widget.AutoCompleteTextView
 import com.example.bondoman.Repository.MainRepository
 import com.example.bondoman.Room.TransactionEntity
 import com.example.bondoman.databinding.ActivityAddTransactionBinding
-import com.example.bondoman.util.LocationClient
+import com.example.bondoman.utils.LocationClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
