@@ -4,17 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import android.util.Log
 import com.example.bondoman.Repository.MainRepository
 import com.example.bondoman.Room.TransactionEntity
-import com.example.bondoman.databinding.ActivityAddTransactionBinding
 import com.example.bondoman.databinding.ActivityEditTransactionBinding
-import com.example.bondoman.util.LocationClient
+import com.example.bondoman.utils.LocationClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.time.LocalDateTime
 
 class EditTransactionActivity : AppCompatActivity() {
     private val locationClient by lazy { LocationClient(this, this) }

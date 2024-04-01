@@ -1,19 +1,10 @@
 package com.example.bondoman
 
-import android.Manifest
-import android.content.Context
 import android.content.Intent
-import android.location.Address
-import android.location.Geocoder
-import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.bondoman.Repository.MainRepository
 import com.example.bondoman.Room.TransactionEntity
 import com.example.bondoman.databinding.ActivityAddTransactionBinding
@@ -34,6 +25,19 @@ class AddTransactionActivity : AppCompatActivity() {
 
         locationClient.requestLocationPermissions()
 
+        // Mengambil data dari Intent
+        val randomTitle = intent.getStringExtra("RANDOM_TITLE")
+        val randomNominal = intent.getIntExtra("RANDOM_NOMINAL", 0)
+
+        // Mengikat data ke view
+        if (!randomTitle.isNullOrEmpty()) {
+            binding.titleEditText.setText(randomTitle)
+        }
+
+        if (randomNominal != 0) {
+            binding.editTextNominal.setText(randomNominal.toString())
+        }
+
         binding.insertTransactionBtn.setOnClickListener {
             val title = binding.titleEditText.text.toString()
             val nominal = binding.editTextNominal.text.toString()
@@ -44,8 +48,8 @@ class AddTransactionActivity : AppCompatActivity() {
                 var longitude: Double
                 if(!locationClient.haveLocationPermissions()){
                     //default
-                    latitude = 0.0
-                    longitude = 0.0
+                    latitude = -6.890430928361903
+                    longitude = 107.61095236101004
                 }else{
                     val location = locationClient.getLocationUpdates()
                     latitude = location.latitude
