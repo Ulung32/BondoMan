@@ -17,7 +17,21 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/round_home_24"
+        android:contentDescription="@string/transaction"
+        />
+    <ImageButton
+        android:id="@+id/transactionButtonB"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/round_home_24b"
+        android:contentDescription="@string/transaction"
+        />
     <Space
         android:layout_width="0dp"
         android:layout_height="1dp"
@@ -29,7 +43,19 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:backgroundTint="@color/white"
+        android:src="@drawable/round_qr_code_scanner_24"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/scanner"/>
+    <ImageButton
+        android:id="@+id/scannerButtonB"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/round_qr_code_scanner_24b"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/scanner"/>
 
     <Space
         android:layout_width="0dp"
@@ -42,7 +68,19 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/round_bar_chart_24"
+        android:contentDescription="@string/chart"/>
+    <ImageButton
+        android:id="@+id/chartButtonB"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/round_bar_chart_24b"
+        android:contentDescription="@string/chart"/>
 
     <Space
         android:layout_width="0dp"
@@ -55,7 +93,19 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:backgroundTint="@color/white"
+        android:src="@drawable/round_settings_24"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/setting"/>
+    <ImageButton
+        android:id="@+id/settingButtonB"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/round_settings_24b"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/setting"/>
     <Space
         android:layout_width="0dp"
         android:layout_height="1dp"

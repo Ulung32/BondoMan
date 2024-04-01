@@ -6,6 +6,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -53,10 +55,13 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fragmentNavbar, fragment).commit()
 
         val networkConnectivityObserver = NetworkConnectivityLiveData(applicationContext)
+        val alert = findViewById<TextView>(R.id.alert_no_network)
         networkConnectivityObserver.observe(this) {
             if(it){
+                alert.visibility = View.GONE
                 Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show()
             } else {
+                alert.visibility = View.VISIBLE
                 Toast.makeText(this, "Not Connected", Toast.LENGTH_SHORT).show()
             }
         }

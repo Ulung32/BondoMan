@@ -3,6 +3,8 @@ package com.example.bondoman
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import com.example.bondoman.Repository.MainRepository
 import com.example.bondoman.Room.TransactionEntity
 import com.example.bondoman.databinding.ActivityAddTransactionBinding
@@ -39,7 +41,7 @@ class AddTransactionActivity : AppCompatActivity() {
         binding.insertTransactionBtn.setOnClickListener {
             val title = binding.titleEditText.text.toString()
             val nominal = binding.editTextNominal.text.toString()
-            val category = binding.categoryEditText.text.toString()
+            val category = binding.category.text.toString()
 
             CoroutineScope(Dispatchers.IO).launch {
                 var latitude: Double
@@ -76,6 +78,14 @@ class AddTransactionActivity : AppCompatActivity() {
                 }
             }
         }
+
+        val items = listOf("PEMASUKAN", "PENGELUARAN")
+
+        val autoComplete = findViewById<AutoCompleteTextView>(R.id.category)
+        val adapter = ArrayAdapter(this, R.layout.list_item, items)
+
+        autoComplete.setAdapter(adapter)
+
     }
 
 }

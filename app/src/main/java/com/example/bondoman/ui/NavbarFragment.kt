@@ -28,6 +28,51 @@ class NavbarFragment : Fragment() {
 
         navController = requireActivity().findNavController(R.id.nav_host_fragment)
 
+        navController.addOnDestinationChangedListener {_, dest, _ ->
+            when(dest.id) {
+                R.id.transactionFragment -> {
+                    binding.transactionButton.visibility = View.GONE
+                    binding.scannerButton.visibility = View.VISIBLE
+                    binding.chartButton.visibility = View.VISIBLE
+                    binding.settingButton.visibility = View.VISIBLE
+                    binding.transactionButtonB.visibility = View.VISIBLE
+                    binding.scannerButtonB.visibility = View.GONE
+                    binding.chartButtonB.visibility = View.GONE
+                    binding.settingButtonB.visibility = View.GONE
+                }
+                R.id.scannerFragment -> {
+                    binding.transactionButton.visibility = View.VISIBLE
+                    binding.scannerButton.visibility = View.GONE
+                    binding.chartButton.visibility = View.VISIBLE
+                    binding.settingButton.visibility = View.VISIBLE
+                    binding.transactionButtonB.visibility = View.GONE
+                    binding.scannerButtonB.visibility = View.VISIBLE
+                    binding.chartButtonB.visibility = View.GONE
+                    binding.settingButtonB.visibility = View.GONE
+                }
+                R.id.chartFragment -> {
+                    binding.transactionButton.visibility = View.VISIBLE
+                    binding.scannerButton.visibility = View.VISIBLE
+                    binding.chartButton.visibility = View.GONE
+                    binding.settingButton.visibility = View.VISIBLE
+                    binding.transactionButtonB.visibility = View.GONE
+                    binding.scannerButtonB.visibility = View.GONE
+                    binding.chartButtonB.visibility = View.VISIBLE
+                    binding.settingButtonB.visibility = View.GONE
+                }
+                R.id.settingFragment -> {
+                    binding.transactionButton.visibility = View.VISIBLE
+                    binding.scannerButton.visibility = View.VISIBLE
+                    binding.chartButton.visibility = View.VISIBLE
+                    binding.settingButton.visibility = View.GONE
+                    binding.transactionButtonB.visibility = View.GONE
+                    binding.scannerButtonB.visibility = View.GONE
+                    binding.chartButtonB.visibility = View.GONE
+                    binding.settingButtonB.visibility = View.VISIBLE
+                }
+            }
+        }
+
         binding.transactionButton.setOnClickListener {
             navController.navigate(R.id.transactionFragment)
         }

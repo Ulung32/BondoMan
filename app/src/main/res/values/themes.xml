@@ -1,14 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.BondoMan" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.BondoMan" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
     <style name="Theme.BondoMan" parent="Base.Theme.BondoMan" />
+
     <style name="Theme.App.SplashScreeen" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/bondo_man_logo</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/bondoman_logo</item>
         <item name="postSplashScreenTheme">@style/Base.Theme.BondoMan</item>
     </style>
 </resources>
