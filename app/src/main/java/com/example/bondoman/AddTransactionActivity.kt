@@ -28,6 +28,10 @@ class AddTransactionActivity : AppCompatActivity() {
 
         locationClient.requestLocationPermissions()
 
+        if(!locationClient.haveLocationPermissions() || !locationClient.inGPSActive()){
+            Toast.makeText(applicationContext, "location set to default", Toast.LENGTH_SHORT).show()
+        }
+
         // Mengambil data dari Intent
         val randomTitle = intent.getStringExtra("RANDOM_TITLE")
         val randomNominal = intent.getIntExtra("RANDOM_NOMINAL", 0)
@@ -50,18 +54,14 @@ class AddTransactionActivity : AppCompatActivity() {
                 //default
                 var latitude: Double = -6.890430928361903
                 var longitude: Double = 107.61095236101004
-                Log.v("test gps", locationClient.inGPSActive().toString())
 
                 if(locationClient.haveLocationPermissions() && locationClient.inGPSActive()){
                     val location = locationClient.getLocationUpdates()
-                    Log.v("gpssssss", "masuk")
                     latitude = location.latitude
                     longitude = location.longitude
                 }
 
                 if (title.isNotEmpty() && nominal.isNotEmpty() && category.isNotEmpty()) {
-                    Log.v("lat", latitude.toString())
-                    Log.v("long", longitude.toString())
                     val repository = MainRepository(applicationContext)
                     val transactionEntity = TransactionEntity(
                         title = title,
@@ -79,7 +79,9 @@ class AddTransactionActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                 } else {
-                    // Show a popup or handle empty fields
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(applicationContext, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
