@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -16,6 +17,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import com.example.bondoman.ui.NavbarFragment
 import com.example.bondoman.utils.NetworkConnectivityLiveData
+import com.example.bondoman.utils.TokenManager
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
@@ -45,6 +47,12 @@ class MainActivity : AppCompatActivity() {
 
         Thread.sleep(1000)
         installSplashScreen()
+
+        val tokenManager = TokenManager(this)
+        if(tokenManager.getToken().isNullOrEmpty()){
+            val intent = Intent(applicationContext, LoginActivity::class.java)
+            startActivity(intent)
+        }
 
         val filter = IntentFilter("ACTION_RANDOMIZE_TRANSACTION")
         registerReceiver(receiver, filter)

@@ -36,7 +36,6 @@ class AddTransactionActivity : AppCompatActivity() {
         val randomTitle = intent.getStringExtra("RANDOM_TITLE")
         val randomNominal = intent.getIntExtra("RANDOM_NOMINAL", 0)
 
-        // Mengikat data ke view
         if (!randomTitle.isNullOrEmpty()) {
             binding.titleEditText.setText(randomTitle)
         }
