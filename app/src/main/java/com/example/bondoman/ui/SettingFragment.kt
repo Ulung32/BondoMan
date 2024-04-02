@@ -6,10 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.bondoman.LoginActivity
+import com.example.bondoman.MainActivity
 import com.example.bondoman.R
 import com.example.bondoman.databinding.FragmentSettingBinding
 import com.example.bondoman.utils.ExcelUtil
+import com.example.bondoman.utils.TokenManager
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,6 +59,15 @@ class SettingFragment : Fragment() {
 
         binding.saveTransaction.setOnClickListener{
             findNavController().navigate(R.id.saveTransactionFragment)
+        }
+
+        binding.LogoutButton.setOnClickListener {
+            val tokenManager = TokenManager(requireContext())
+            tokenManager.removeToken()
+            Toast.makeText(requireContext(), "Loged out", Toast.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK //clear back stack
+            startActivity(intent)
         }
     }
 
