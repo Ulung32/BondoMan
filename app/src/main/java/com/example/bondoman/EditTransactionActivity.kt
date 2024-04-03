@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
+import android.widget.Toast
 import com.example.bondoman.Repository.MainRepository
 import com.example.bondoman.Room.TransactionEntity
 import com.example.bondoman.databinding.ActivityEditTransactionBinding
@@ -30,8 +32,23 @@ class EditTransactionActivity : AppCompatActivity() {
         val category = intent.getStringExtra("category")
         val date = intent.getStringExtra("date")
 
+        //default
+        var latitude = intent.getDoubleExtra("latitude", 0.0)
+        var longitude = intent.getDoubleExtra("longitude", 0.0)
         binding.editLocationButton.setOnClickListener {
             locationClient.requestLocationPermissions()
+            if(locationClient.haveLocationPermissions() && locationClient.inGPSActive()){
+                CoroutineScope(Dispatchers.IO).launch{
+                    val location = locationClient.getLocationUpdates()
+                    latitude = location.latitude
+                    longitude = location.longitude
+                    Log.v("lat", latitude.toString())
+                    Log.v("long", longitude.toString())
+                }
+                Toast.makeText(applicationContext, "Location Updated", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(applicationContext, "Turn on your GPS and Grant location permissions", Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.insertTransactionBtn.setOnClickListener {
@@ -39,18 +56,6 @@ class EditTransactionActivity : AppCompatActivity() {
             val nominal = binding.editTextNominal.text.toString()
 
             CoroutineScope(Dispatchers.IO).launch {
-                var latitude: Double
-                var longitude: Double
-                if(!locationClient.haveLocationPermissions()){
-                    //default
-                    latitude = intent.getDoubleExtra("latitude", 0.0)
-                    longitude = intent.getDoubleExtra("longitude", 0.0)
-                }else{
-                    val location = locationClient.getLocationUpdates()
-                    latitude = location.latitude
-                    longitude = location.longitude
-                }
-
                 if (title.isNotEmpty() && nominal.isNotEmpty()) {
                     val repository = MainRepository(applicationContext)
                     val transactionEntity = TransactionEntity(
@@ -66,11 +71,14 @@ class EditTransactionActivity : AppCompatActivity() {
                     repository.updateTransaction(transactionEntity)
 
                     withContext(Dispatchers.Main) {
+                        Toast.makeText(applicationContext, "Success update transaction", Toast.LENGTH_SHORT).show()
                         val intent = Intent(applicationContext, MainActivity::class.java)
                         startActivity(intent)
                     }
                 } else {
-                    // Show a popup or handle empty fields
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(applicationContext, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }

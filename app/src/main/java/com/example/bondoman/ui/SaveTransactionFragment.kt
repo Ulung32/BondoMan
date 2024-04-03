@@ -52,7 +52,23 @@ class SaveTransactionFragment : Fragment() {
                 Toast.makeText(requireContext(), "File name cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
-    }
 
+        binding.sendEmailBtn.setOnClickListener {
+            val fileName = binding.fileNameEditText.text.toString()
+
+            if (fileName.isNotEmpty()) {
+                repository.transactionList.observe(viewLifecycleOwner){it ->
+                    lifecycleScope.launch{
+                        excelUtil.saveExcelToFileAndSendEmail(it, fileName, "saktiwidyatmaja@gmail.com", "Bondoman Receipt List", "Here is the list")
+                    }
+                }
+                Toast.makeText(requireContext(), "Creating Excel and sending to email", Toast.LENGTH_SHORT).show()
+
+            } else {
+                Toast.makeText(requireContext(), "File name cannot be empty", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
 
 }

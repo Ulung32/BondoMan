@@ -53,9 +53,7 @@ class ScannerFragment : Fragment() {
 
     private lateinit var cameraProvider: ProcessCameraProvider
     private lateinit var camera: Camera
-//    private var hasPermission: Boolean = false
     private lateinit var cameraSelector: CameraSelector
-    private val listPermissionNeeded = arrayListOf<String>()
     private val cameraClient by lazy { CameraClient(requireContext(), requireActivity()) }
     private val cameraViewModel: ScannerViewModel by viewModels()
 
@@ -64,64 +62,6 @@ class ScannerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentScannerBinding.inflate(inflater, container, false)
-
-
-//        cameraViewModel.requestCameraPermission(cameraClient)
-//
-//        val permission_Observer = Observer<Boolean> { newValue: Boolean ->
-//            Log.v("tes", hasPermission.toString())
-//            if((hasPermission == false && newValue == true) || (hasPermission && newValue)) {
-//                startCamera()
-//                binding.sendBtn.setOnClickListener{
-//                    takePhoto()
-//                }
-//            } else {
-//                binding.cameraPv.setBackgroundColor(Color.WHITE)
-//            }
-//            hasPermission = newValue
-//        }
-//        cameraViewModel.hasCameraPermission.observe(viewLifecycleOwner, permission_Observer)
-
-
-//        cameraViewModel.hasCameraPermission.observe(viewLifecycleOwner) { hasPermission: Boolean ->
-//            if (hasPermission) {
-//                startCamera()
-////
-//                binding.sendBtn.setOnClickListener {
-//                    takePhoto()
-//                }
-//            } else {
-//                binding.cameraPv.setBackgroundColor(Color.WHITE)
-//            }
-//        }
-
-
-
-//        hasPermission = cameraClient.requestCameraPermission()
-////        if (checkMultiplePermission()) {
-//        if (hasPermission) {
-//            startCamera()
-//
-//            binding.sendBtn.setOnClickListener {
-//                takePhoto()
-//            }
-//        } else {
-////            val alertDialogBuilder = AlertDialog.Builder(requireContext())
-////            alertDialogBuilder.setTitle("Permission Required")
-////            alertDialogBuilder.setMessage("This app requires camera permission to function properly. Please grant the permission in the app settings.")
-////            alertDialogBuilder.setPositiveButton("Go to Settings") { dialog, _ ->
-////                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-////                val uri = Uri.fromParts("package", requireActivity().packageName, null)
-////                intent.data = uri
-////                startActivity(intent)
-////            }
-////            alertDialogBuilder.setNegativeButton("Cancel") { dialog, _ ->
-////                dialog.dismiss()
-////            }
-////            val alertDialog = alertDialogBuilder.create()
-////            alertDialog.show()
-//            binding.cameraPv.setBackgroundColor(Color.WHITE)
-//        }
 
         return binding.root
     }
@@ -144,122 +84,6 @@ class ScannerFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
-//    private fun checkMultiplePermission(): Boolean {
-//        for (permission in multiplePermissionNameList) {
-//            if (ContextCompat.checkSelfPermission(
-//                    requireContext(),
-//                    permission
-//                ) != PackageManager.PERMISSION_GRANTED
-//            ) {
-//                listPermissionNeeded.add(permission)
-//            }
-//        }
-//        if (listPermissionNeeded.isNotEmpty()) {
-//            ActivityCompat.requestPermissions(
-//                requireActivity(),
-//                listPermissionNeeded.toTypedArray(),
-//                multiplePermissionId
-//            )
-//            return false
-//        }
-//        return true
-//    }
-
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<out String>,
-//        grantResults: IntArray,
-//    ) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-//
-//        if (requestCode == multiplePermissionId) {
-//            if (grantResults.isNotEmpty()) {
-//                var isGrant = true
-//                for (element in grantResults) {
-//                    if (element == PackageManager.PERMISSION_DENIED) {
-//                        isGrant = false
-//                        break
-//                    }
-//                }
-//                if (isGrant) {
-//                    startCamera()
-//                } else {
-//                    // Handle permission denied
-//                    val someDenied = listPermissionNeeded.any { permission ->
-//                        !ActivityCompat.shouldShowRequestPermissionRationale(
-//                            requireActivity(),
-//                            permission
-//                        )
-//                    }
-//                    if (someDenied) {
-//                        // Permission denied with "never ask again" option
-//                        // You can open settings manually here
-//                        // Or display a dialog explaining the user how to grant the permission
-//                        val alertDialogBuilder = AlertDialog.Builder(requireContext())
-//                        alertDialogBuilder.setTitle("Permission Required")
-//                        alertDialogBuilder.setMessage("This app requires camera permission to function properly. Please grant the permission in the app settings.")
-//                        alertDialogBuilder.setPositiveButton("Go to Settings") { dialog, _ ->
-//                            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-//                            val uri = Uri.fromParts("package", requireActivity().packageName, null)
-//                            intent.data = uri
-//                            startActivity(intent)
-//                        }
-//                        alertDialogBuilder.setNegativeButton("Cancel") { dialog, _ ->
-//                            dialog.dismiss()
-//                        }
-//                        val alertDialog = alertDialogBuilder.create()
-//                        alertDialog.show()
-//                        binding.cameraPv.setBackgroundColor(Color.WHITE)
-//                    } else {
-//                        // Permission denied
-//                        // You can display a warning dialog or request the permissions again
-//                        binding.cameraPv.setBackgroundColor(Color.WHITE)
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<out String>,
-//        grantResults: IntArray,
-//    ) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-//
-//        if (requestCode == multiplePermissionId) {
-//            if (grantResults.isNotEmpty()) {
-//                var isGrant = true
-//                for (element in grantResults) {
-//                    if (element == PackageManager.PERMISSION_DENIED) {
-//                        isGrant = false
-//                    }
-//                }
-//                if (isGrant) {
-//                    // here all permission granted successfully
-//                    startCamera()
-//                } else {
-//                    var someDenied = false
-//                    for (permission in permissions) {
-//                        if (!ActivityCompat.shouldShowRequestPermissionRationale(
-//                                requireActivity(),
-//                                permission
-//                            )
-//                        ) {
-//                            if (ActivityCompat.checkSelfPermission(
-//                                    requireContext(),
-//                                    permission
-//                                ) == PackageManager.PERMISSION_DENIED
-//                            ) {
-//                                someDenied = true
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
@@ -290,7 +114,6 @@ class ScannerFragment : Fragment() {
             camera = cameraProvider.bindToLifecycle(
                 this, cameraSelector, preview, imageCapture
             )
-//            setUpZoomTapToFocus()
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -368,13 +191,6 @@ class ScannerFragment : Fragment() {
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                                     startActivity(intent)
                                     requireActivity().finish()
-
-//                                    val supportFragmentManager = requireActivity().supportFragmentManager
-////                                    supportFragmentManager.replace(R.id._firstFragment, TransactionFragment())
-//                                    supportFragmentManager.beginTransaction().replace(R.id.fragmentNavbar, TransactionFragment()).commit()
-
-//                                    supportFragmentManager.addToBackStack(null) // Optional, untuk menambahkan ke back stack
-//                                    supportFragmentManager.commit()
                                 }
                                 alertDialog.show()
                             }

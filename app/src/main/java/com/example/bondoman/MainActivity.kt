@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import com.example.bondoman.ui.NavbarFragment
 import com.example.bondoman.utils.NetworkConnectivityLiveData
+import com.example.bondoman.utils.TokenManager
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.action == "ACTION_RANDOMIZE_TRANSACTION") {
-                val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9') // Karakter yang mungkin
+                val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
                 val randomTitleValue = (1..10)
                     .map { kotlin.random.Random.nextInt(0, charPool.size) }
                     .map(charPool::get)
@@ -49,6 +50,13 @@ class MainActivity : AppCompatActivity() {
 
         Thread.sleep(1000)
         installSplashScreen()
+
+        val tokenManager = TokenManager(this)
+        if(tokenManager.getToken().isNullOrEmpty()){
+            val intent = Intent(applicationContext, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK //clear back stack
+            startActivity(intent)
+        }
 
         val filter = IntentFilter("ACTION_RANDOMIZE_TRANSACTION")
         registerReceiver(receiver, filter)

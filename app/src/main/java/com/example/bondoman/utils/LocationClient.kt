@@ -7,6 +7,7 @@ import android.content.Context
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
+import android.location.LocationManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import pub.devrel.easypermissions.EasyPermissions
@@ -17,6 +18,11 @@ import java.util.concurrent.CompletableFuture
 class LocationClient (private val context: Context, private val activity: Activity){
     private val fusedLocationClient: FusedLocationProviderClient by lazy {
         LocationServices.getFusedLocationProviderClient(context)
+    }
+
+    public fun inGPSActive(): Boolean {
+        val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
 
     @SuppressLint("MissingPermission")

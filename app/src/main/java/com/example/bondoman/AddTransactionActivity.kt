@@ -3,8 +3,11 @@ package com.example.bondoman
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.bondoman.Repository.MainRepository
 import com.example.bondoman.Room.TransactionEntity
 import com.example.bondoman.databinding.ActivityAddTransactionBinding
@@ -25,11 +28,14 @@ class AddTransactionActivity : AppCompatActivity() {
 
         locationClient.requestLocationPermissions()
 
+        if(!locationClient.haveLocationPermissions() || !locationClient.inGPSActive()){
+            Toast.makeText(applicationContext, "location set to default", Toast.LENGTH_SHORT).show()
+        }
+
         // Mengambil data dari Intent
         val randomTitle = intent.getStringExtra("RANDOM_TITLE")
         val randomNominal = intent.getIntExtra("RANDOM_NOMINAL", 0)
 
-        // Mengikat data ke view
         if (!randomTitle.isNullOrEmpty()) {
             binding.titleEditText.setText(randomTitle)
         }
@@ -44,13 +50,11 @@ class AddTransactionActivity : AppCompatActivity() {
             val category = binding.category.text.toString()
 
             CoroutineScope(Dispatchers.IO).launch {
-                var latitude: Double
-                var longitude: Double
-                if(!locationClient.haveLocationPermissions()){
-                    //default
-                    latitude = -6.890430928361903
-                    longitude = 107.61095236101004
-                }else{
+                //default
+                var latitude: Double = -6.890430928361903
+                var longitude: Double = 107.61095236101004
+
+                if(locationClient.haveLocationPermissions() && locationClient.inGPSActive()){
                     val location = locationClient.getLocationUpdates()
                     latitude = location.latitude
                     longitude = location.longitude
@@ -68,13 +72,15 @@ class AddTransactionActivity : AppCompatActivity() {
                     )
 
                     repository.insertTransaction(transactionEntity)
-
                     withContext(Dispatchers.Main) {
+                        Toast.makeText(applicationContext, "Success add transaction", Toast.LENGTH_SHORT).show()
                         val intent = Intent(applicationContext, MainActivity::class.java)
                         startActivity(intent)
                     }
                 } else {
-                    // Show a popup or handle empty fields
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(applicationContext, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
