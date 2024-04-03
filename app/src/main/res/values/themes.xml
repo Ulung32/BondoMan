@@ -8,8 +8,8 @@
     <style name="Theme.BondoMan" parent="Base.Theme.BondoMan" />
 
     <style name="Theme.App.SplashScreeen" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/bondoman_logo</item>
+        <item name="windowSplashScreenBackground">@color/secondary</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/bondoman_logo_foreground</item>
         <item name="postSplashScreenTheme">@style/Base.Theme.BondoMan</item>
     </style>
 </resources>

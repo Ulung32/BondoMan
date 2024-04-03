@@ -4,14 +4,18 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.fragment.app.Fragment
 
 import androidx.navigation.NavController
 import com.example.bondoman.ui.NavbarFragment
@@ -59,11 +63,21 @@ class MainActivity : AppCompatActivity() {
         networkConnectivityObserver.observe(this) {
             if(it){
                 alert.visibility = View.GONE
-                Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show()
             } else {
                 alert.visibility = View.VISIBLE
                 Toast.makeText(this, "Not Connected", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        Log.v("TESSS", "ASWWW")
+        val navEl = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            navEl?.view?.layoutParams?.height = 800
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            navEl?.view?.layoutParams?.height = 2000
         }
     }
 }

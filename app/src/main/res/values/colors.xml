@@ -2,6 +2,11 @@
 <resources>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#8EF2A4</color>
-    <color name="secondary">#efd0a6</color>
-    <color name="primary">#231f20</color>
+    <color name="tertiary">#141a46</color>
+    <color name="secondary">#ec8b5e</color>
+    <color name="primary">#0f172a</color>
+    <color name="primary700">#334155</color>
+    <color name="primary50">#f8fafc</color>
+    <color name="primary200">#e2e8f0</color>
+    <color name="primary300">#cbd5e1</color>
 </resources>

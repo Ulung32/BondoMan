@@ -2,7 +2,6 @@ package com.example.bondoman.ui
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,9 @@ import com.example.bondoman.Repository.MainRepository
 import com.example.bondoman.databinding.FragmentChartBinding
 import com.example.bondoman.ui.Transaction.TransactionViewModel
 import com.example.bondoman.ui.Transaction.TransactionViewModelFactory
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 
 class ChartFragment : Fragment() {
 
@@ -24,16 +26,7 @@ class ChartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentChartBinding.inflate(inflater, container, false)
-        binding.apply {
-            donutChart.donutColors = intArrayOf(
-                Color.parseColor("#FFFFFF"),
-                Color.parseColor("#AAAAAA"),
-                Color.parseColor("#444444")
-            )
-            donutChart.animation.duration = 1000L
-            donutChart.donutThickness = 100F
-            donutChart.animate(listOf(40F, 40F, 120F))
-        }
+
         return binding.root
     }
 
@@ -46,16 +39,25 @@ class ChartFragment : Fragment() {
         transactionViewModel = ViewModelProvider(this, factory)[TransactionViewModel::class.java]
 
         transactionViewModel.transactionList.observe(viewLifecycleOwner) { data ->
-            var incomeFraction = data.filter { it.category == "PEMASUKAN" }.size.toFloat()/data.size*200
-            var outcomeFraction = data.filter { it.category == "PENGELUARAN" }.size.toFloat()/data.size*200
-            var otherFraction = 200f-incomeFraction-outcomeFraction
+            val incomeFraction = data.filter { it.category == "PEMASUKAN" }.size.toFloat()/data.size*200
+            val outcomeFraction = data.filter { it.category == "PENGELUARAN" }.size.toFloat()/data.size*200
 
-            Log.v("wf", incomeFraction.toString())
-            Log.v("wf", outcomeFraction.toString())
-            Log.v("wf", otherFraction.toString())
+            val pieChart = binding.donutChart
 
+            val data = ArrayList<PieEntry>()
+            data.add(PieEntry(incomeFraction, "Pemasukan"))
+            data.add(PieEntry(outcomeFraction, "Pengeluaran"))
 
-            binding.donutChart.animate(listOf(incomeFraction, outcomeFraction, otherFraction))
+            val dataset = PieDataSet(data, "Transaksi")
+            dataset.setColors(Color.BLUE, Color.CYAN)
+            dataset.setValueTextColor(Color.BLACK)
+
+            val pieData = PieData(dataset)
+
+            pieChart.setData(pieData)
+            pieChart.centerText = "Transaksi"
+            pieChart.animate()
+            pieChart.invalidate()
         }
     }
 }
