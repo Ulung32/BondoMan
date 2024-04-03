@@ -97,7 +97,7 @@
                 android:id="@+id/location_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="8dp"
                 android:ellipsize="end"
                 android:maxWidth="100dp"
                 android:maxHeight="20dp"
@@ -115,9 +115,10 @@
                 android:id="@+id/deleteTransactionButton"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/round_delete_24"
+                android:layout_marginBottom="-12dp"
                 android:background="@null"
                 android:contentDescription="delete"
+                android:src="@drawable/round_delete_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -125,10 +126,10 @@
                 android:id="@+id/editTransactionButton"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/round_edit_24"
-                android:layout_marginRight="12dp"
+                android:layout_marginBottom="-12dp"
                 android:background="@null"
                 android:contentDescription="edit"
+                android:src="@drawable/round_edit_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/deleteTransactionButton" />
 
