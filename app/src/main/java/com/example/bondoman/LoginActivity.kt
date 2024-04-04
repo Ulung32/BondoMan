@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.passwordEditText.text.toString()
 
             if(email.isNotEmpty() && password.isNotEmpty()){
-                val api = BondoManApi.getInstance()
+                val api = BondoManApi.getInstance("")
 
                 CoroutineScope(Dispatchers.IO).launch {
                     val response = api.login(LoginRequest(email, password))

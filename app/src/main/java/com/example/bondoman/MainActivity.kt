@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 import androidx.navigation.NavController
+import com.example.bondoman.service.LoginService
 import com.example.bondoman.ui.NavbarFragment
 import com.example.bondoman.utils.NetworkConnectivityLiveData
 import com.example.bondoman.utils.TokenManager
@@ -47,6 +48,9 @@ class MainActivity : AppCompatActivity() {
 
         Thread.sleep(1000)
         installSplashScreen()
+
+        val intent = Intent(this, LoginService::class.java)
+        startService(intent)
 
         val tokenManager = TokenManager(this)
         if(tokenManager.getToken().isNullOrEmpty()){

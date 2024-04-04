@@ -21,6 +21,7 @@ import com.example.bondoman.Room.TransactionEntity
 import com.example.bondoman.databinding.FragmentScannerBinding
 import com.example.bondoman.service.BondoManApi
 import com.example.bondoman.util.CameraClient
+import com.example.bondoman.utils.TokenManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -161,7 +162,8 @@ class ScannerFragment : Fragment() {
 
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
-                            val response = BondoManApi.getInstance().postReceipt(body)
+                            val tokenManager = TokenManager(requireContext())
+                            val response = BondoManApi.getInstance(tokenManager.getToken()!!).postReceipt(body)
                             withContext(Dispatchers.Main) {
                                 val alertDialog = AlertDialog.Builder(requireContext())
                                 alertDialog.setTitle("Success")
