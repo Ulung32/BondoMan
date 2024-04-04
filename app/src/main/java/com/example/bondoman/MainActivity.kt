@@ -34,10 +34,17 @@ class MainActivity : AppCompatActivity() {
 
                 val randomNominalValue = (1000..2000).random()
 
+//                val intent = Intent(context, AddTransactionActivity::class.java).apply {
+//                    putExtra("RANDOM_TITLE", randomTitleValue)
+//                    putExtra("RANDOM_NOMINAL", randomNominalValue)
+//                }
+
                 val intent = Intent(context, AddTransactionActivity::class.java).apply {
                     putExtra("RANDOM_TITLE", randomTitleValue)
                     putExtra("RANDOM_NOMINAL", randomNominalValue)
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP // Clear all activities above AddTransactionActivity
                 }
+
                 startActivity(intent)
             }
         }

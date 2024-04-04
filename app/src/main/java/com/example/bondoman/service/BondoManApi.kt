@@ -18,7 +18,7 @@ import retrofit2.http.Multipart
 interface BondoManApi {
     @Multipart
     @POST("api/bill/upload")
-    suspend fun postReceipt(@Part file: MultipartBody.Part): Receipt
+    suspend fun postReceipt(@Part file: MultipartBody.Part): Response<Receipt>
 
     @POST("api/auth/login")
     suspend fun login(@Body loginRequest: LoginRequest) : Response<LoginResponse>
