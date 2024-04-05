@@ -18,7 +18,7 @@ import com.example.bondoman.Repository.MainRepository
 import com.example.bondoman.Room.TransactionEntity
 import com.example.bondoman.databinding.FragmentScannerBinding
 import com.example.bondoman.service.BondoManApi
-import com.example.bondoman.util.CameraClient
+import com.example.bondoman.utils.CameraClient
 import com.example.bondoman.utils.TokenManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -145,53 +145,6 @@ class ScannerFragment : Fragment() {
                         )
                     }
 
-//                    CoroutineScope(Dispatchers.IO).launch {
-//                        try {
-//                            val tokenManager = TokenManager(requireContext())
-//                            val response = BondoManApi.getInstance(tokenManager.getToken()!!).postReceipt(body)
-//                            withContext(Dispatchers.Main) {
-//                                val alertDialog = AlertDialog.Builder(requireContext())
-//                                alertDialog.setTitle("Success")
-//                                alertDialog.setMessage("Receipt uploaded successfully. \n$response")
-//                                alertDialog.setPositiveButton("Recapture") { dialog, _ ->
-//                                    dialog.dismiss()
-//                                }
-//                                alertDialog.setNegativeButton("Add to transaction list") { dialog, _ ->
-//                                    val repository =
-//                                        MainRepository(requireContext().applicationContext)
-//                                    // Menambahkan response ke repository
-//                                    response.items.items.forEach { item ->
-//                                        val transactionEntity = TransactionEntity(
-//                                            title = item.name,
-//                                            category = "Penjualan",
-//                                            latitude = 0.0,
-//                                            longitude = 0.0,
-//                                            nominal = (item.qty * item.price).toInt(),
-//                                            date = LocalDateTime.now().toString()
-//                                        )
-//                                        CoroutineScope(Dispatchers.IO).launch {
-//                                            repository.insertTransaction(transactionEntity)
-//                                        }
-//                                    }
-//
-//                                    val intent = Intent(requireContext(), MainActivity::class.java)
-//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-//                                    startActivity(intent)
-//                                    requireActivity().finish()
-//                                }
-//                                alertDialog.show()
-//                            }
-//                        } catch (e: Exception) {
-//                            withContext(Dispatchers.Main) {
-//                                val alertDialog = AlertDialog.Builder(requireContext())
-//                                alertDialog.setMessage("Something Wrong happened. \n${e.message}")
-//                                alertDialog.setPositiveButton("OK") { dialog, _ ->
-//                                    dialog.dismiss()
-//                                }
-//                                alertDialog.show()
-//                            }
-//                        }
-//                    }
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
                             val tokenManager = TokenManager(requireContext())
@@ -206,36 +159,9 @@ class ScannerFragment : Fragment() {
                                     alertDialog.setTitle("Success")
                                     alertDialog.setMessage("Receipt uploaded successfully. \n$itemsString")
 
-//                                    val alertDialog = AlertDialog.Builder(requireContext())
-//                                    alertDialog.setTitle("Success")
-//                                    alertDialog.setMessage("Receipt uploaded successfully. \n${response.body()?.toString()}")
-
                                     alertDialog.setPositiveButton("Recapture") { dialog, _ ->
                                         dialog.dismiss()
                                     }
-//                                    alertDialog.setNegativeButton("Add to transaction list") { dialog, _ ->
-//                                        val repository =
-//                                            MainRepository(requireContext().applicationContext)
-//                                        // Menambahkan response ke repository
-//                                        response.body()?.items?.items?.forEach { item ->
-//                                            val transactionEntity = TransactionEntity(
-//                                                title = item.name,
-//                                                category = "PEMASUKAN",
-//                                                latitude = 0.0,
-//                                                longitude = 0.0,
-//                                                nominal = (item.qty * item.price).toInt(),
-//                                                date = LocalDateTime.now().toString()
-//                                            )
-//                                            CoroutineScope(Dispatchers.IO).launch {
-//                                                repository.insertTransaction(transactionEntity)
-//                                            }
-//                                        }
-//
-//                                        val intent = Intent(requireContext(), MainActivity::class.java)
-//                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-//                                        startActivity(intent)
-//                                        requireActivity().finish()
-//                                    }
 
                                     alertDialog.setNegativeButton("Add to transaction list") { dialog, _ ->
                                         val repository = MainRepository(requireContext().applicationContext)

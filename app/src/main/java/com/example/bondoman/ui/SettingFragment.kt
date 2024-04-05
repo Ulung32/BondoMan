@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.bondoman.LoginActivity
 import com.example.bondoman.MainActivity
@@ -46,19 +48,25 @@ class SettingFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentSettingBinding.inflate(inflater, container, false)
-        binding.randomizeTransactionBtn.setOnClickListener{
-            val intent = Intent("ACTION_RANDOMIZE_TRANSACTION")
-            requireContext().sendBroadcast(intent)
-        }
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.saveTransaction.setOnClickListener{
             findNavController().navigate(R.id.saveTransactionFragment)
+        }
+
+        binding.randomizeTransactionBtn.setOnClickListener{
+//            val intent = Intent("ACTION_RANDOMIZE_TRANSACTION")
+            val intent = Intent(requireContext(), MainActivity::class.java).apply {
+                action = "ACTION_RANDOMIZE_TRANSACTION"
+            }
+            requireContext().sendBroadcast(intent)
+        }
+
+        binding.twibbonBtn.setOnClickListener{
+            findNavController().navigate(R.id.twibbonFragment)
         }
 
         binding.LogoutButton.setOnClickListener {

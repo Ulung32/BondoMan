@@ -34,11 +34,6 @@ class MainActivity : AppCompatActivity() {
 
                 val randomNominalValue = (1000..2000).random()
 
-//                val intent = Intent(context, AddTransactionActivity::class.java).apply {
-//                    putExtra("RANDOM_TITLE", randomTitleValue)
-//                    putExtra("RANDOM_NOMINAL", randomNominalValue)
-//                }
-
                 val intent = Intent(context, AddTransactionActivity::class.java).apply {
                     putExtra("RANDOM_TITLE", randomTitleValue)
                     putExtra("RANDOM_NOMINAL", randomNominalValue)
@@ -67,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val filter = IntentFilter("ACTION_RANDOMIZE_TRANSACTION")
-        registerReceiver(receiver, filter)
+        registerReceiver(receiver, filter, RECEIVER_NOT_EXPORTED)
 
         setContentView(R.layout.activity_main)
 

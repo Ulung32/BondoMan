@@ -66,6 +66,9 @@
         <action
             android:id="@+id/action_settingFragment_to_saveTransactionFragment"
             app:destination="@id/saveTransactionFragment"/>
+        <action
+            android:id="@+id/action_settingFragment_to_twibbonFragment"
+            app:destination="@id/twibbonFragment"/>
     </fragment>
     <fragment
         android:id="@+id/saveTransactionFragment"
@@ -74,6 +77,15 @@
         tools:layout="@layout/fragment_save_transaction">
         <action
             android:id="@+id/action_saveTransactionFragment_to_settingFragment"
+            app:destination="@id/settingFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/twibbonFragment"
+        android:name="com.example.bondoman.ui.TwibbonFragment"
+        android:label="fragment_twibbon"
+        tools:layout="@layout/fragment_twibbon">
+        <action
+            android:id="@+id/action_twibbonFragment_to_settingFragment"
             app:destination="@id/settingFragment"/>
     </fragment>
 </navigation>
