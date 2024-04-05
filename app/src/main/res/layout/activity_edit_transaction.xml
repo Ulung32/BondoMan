@@ -49,7 +49,7 @@
             android:id="@+id/editTextNominal"
             android:layout_width="350dp"
             android:layout_height="70dp"
-            android:hint="Nama Transaksi"
+            android:hint="Nominal"
             android:backgroundTint="@color/primary"
             style="@style/Widget.Material3.TextInputEditText.FilledBox" />
     </com.google.android.material.textfield.TextInputLayout>

@@ -81,6 +81,7 @@
             android:layout_width="350dp"
             android:layout_height="70dp"
             android:hint="Email"
+            android:textColor="@color/primary200"
             android:inputType="textEmailAddress"
             android:backgroundTint="@color/primary"
             style="@style/Widget.Material3.TextInputEditText.FilledBox" />
@@ -99,6 +100,7 @@
             android:layout_width="350dp"
             android:layout_height="70dp"
             android:hint="Password"
+            android:textColor="@color/primary200"
             android:inputType="textPassword"
             android:backgroundTint="@color/primary"
             style="@style/Widget.Material3.TextInputEditText.FilledBox" />
