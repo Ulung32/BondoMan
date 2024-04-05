@@ -2,18 +2,27 @@ package com.example.bondoman.ui
 
 import android.app.AlertDialog
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.*
 import android.provider.MediaStore
+import android.util.Log
 import android.view.*
+import android.widget.TextView
 import android.widget.Toast
 import androidx.camera.core.*
 import androidx.camera.core.ImageCapture.OutputFileOptions
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import com.example.bondoman.ErrorPageActivity
+import com.example.bondoman.LoginActivity
 import com.example.bondoman.MainActivity
+import com.example.bondoman.R
 import com.example.bondoman.Repository.MainRepository
 import com.example.bondoman.Room.TransactionEntity
 import com.example.bondoman.databinding.FragmentScannerBinding
@@ -63,6 +72,12 @@ class ScannerFragment : Fragment() {
             }
         }else{
             binding.cameraPv.setBackgroundColor(Color.WHITE)
+        }
+
+        if(!isOnline(requireContext())){
+            val intent = Intent(requireContext(), ErrorPageActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK //clear back stack
+            startActivity(intent)
         }
     }
 
@@ -295,5 +310,24 @@ class ScannerFragment : Fragment() {
                 }
             }
         )
+    }
+
+    private fun isOnline(context: Context): Boolean{
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if (capabilities != null) {
+            if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
+                return true
+            } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
+                return true
+            } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
+                return true
+            }
+        }
+        return false
     }
 }

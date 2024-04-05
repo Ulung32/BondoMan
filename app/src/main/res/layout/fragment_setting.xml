@@ -12,11 +12,10 @@
     <!-- TODO: monggo di styling hehehe -->
 
     <TextView
-        android:id="@+id/saveTransaction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Simpan Transaksi"
+        android:text="Setting"
         android:textStyle="bold"
         android:textSize="20dp"
         android:textColor="@color/primary200"
@@ -37,6 +36,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="start|center_vertical" />
+
+    <Button
+        android:id="@+id/saveTransaction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="168dp"
+        android:backgroundTint="@color/tertiary"
+        android:gravity="start|center_vertical"
+        android:text="Save Transaction"
+        android:textColor="@color/primary200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/LogoutButton"
