@@ -10,3 +10,9 @@ data class LoginRequest(
     val email: String,
     val password: String
 )
+
+data class TokenResponse(
+    @SerializedName("nim") val nim: String,
+    @SerializedName("iat") val iat: Long,
+    @SerializedName("exp") val exp: Long
+)

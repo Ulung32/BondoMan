@@ -7,18 +7,28 @@ import okhttp3.OkHttpClient
 
 class RetrofitClient {
     companion object {
-        private const val TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaW0iOiIxMzUyMTE2MCIsImlhdCI6MTcxMTg4MTEyNiwiZXhwIjoxNzExODgxNDI2fQ.dUoFi6jQnsUkUEE10HHv2iXHWv6xeWxO2hVKKnxiOyA"
-        private val client = OkHttpClient.Builder()
-            .addInterceptor(AuthInterceptor(TOKEN))
-            .build()
+//        private var TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaW0iOiIxMzUyMTE2MCIsImlhdCI6MTcxMTg4MTEyNiwiZXhwIjoxNzExODgxNDI2fQ.dUoFi6jQnsUkUEE10HHv2iXHWv6xeWxO2hVKKnxiOyA"
+//        private val client = OkHttpClient.Builder()
+//            .addInterceptor(AuthInterceptor(TOKEN))
+//            .build()
+//
+//        private val retrofit = retrofit2.Retrofit.Builder()
+//            .baseUrl("https://pbd-backend-2024.vercel.app/")
+//            .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create())
+//            .client(client)
+//            .build()
 
-        private val retrofit = retrofit2.Retrofit.Builder()
-            .baseUrl("https://pbd-backend-2024.vercel.app/")
-            .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create())
-            .client(client)
-            .build()
+        fun getInstance(token: String): retrofit2.Retrofit {
+            val client = OkHttpClient.Builder()
+                .addInterceptor(AuthInterceptor(token))
+                .build()
 
-        fun getInstance(): retrofit2.Retrofit {
+            val retrofit = retrofit2.Retrofit.Builder()
+                .baseUrl("https://pbd-backend-2024.vercel.app/")
+                .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create())
+                .client(client)
+                .build()
+
             return retrofit
         }
     }

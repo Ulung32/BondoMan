@@ -18,6 +18,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 
 import androidx.navigation.NavController
+import com.example.bondoman.service.LoginService
 import com.example.bondoman.ui.NavbarFragment
 import com.example.bondoman.utils.NetworkConnectivityLiveData
 import com.example.bondoman.utils.TokenManager
@@ -36,10 +37,17 @@ class MainActivity : AppCompatActivity() {
 
                 val randomNominalValue = (1000..2000).random()
 
+//                val intent = Intent(context, AddTransactionActivity::class.java).apply {
+//                    putExtra("RANDOM_TITLE", randomTitleValue)
+//                    putExtra("RANDOM_NOMINAL", randomNominalValue)
+//                }
+
                 val intent = Intent(context, AddTransactionActivity::class.java).apply {
                     putExtra("RANDOM_TITLE", randomTitleValue)
                     putExtra("RANDOM_NOMINAL", randomNominalValue)
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP // Clear all activities above AddTransactionActivity
                 }
+
                 startActivity(intent)
             }
         }
@@ -50,6 +58,9 @@ class MainActivity : AppCompatActivity() {
 
         Thread.sleep(1000)
         installSplashScreen()
+
+        val intent = Intent(this, LoginService::class.java)
+        startService(intent)
 
         val tokenManager = TokenManager(this)
         if(tokenManager.getToken().isNullOrEmpty()){
