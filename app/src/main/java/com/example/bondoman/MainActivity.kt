@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val filter = IntentFilter("ACTION_RANDOMIZE_TRANSACTION")
-        registerReceiver(receiver, filter, RECEIVER_NOT_EXPORTED)
+        registerReceiver(receiver, filter)
 
         setContentView(R.layout.activity_main)
 
