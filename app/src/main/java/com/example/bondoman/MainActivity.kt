@@ -80,7 +80,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        Log.v("TESSS", "ASWWW")
         val navEl = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             navEl?.view?.layoutParams?.height = 800

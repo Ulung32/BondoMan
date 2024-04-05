@@ -9,4 +9,5 @@
     <color name="primary50">#f8fafc</color>
     <color name="primary200">#e2e8f0</color>
     <color name="primary300">#cbd5e1</color>
+    <color name="danger">#ef4444</color>
 </resources>
