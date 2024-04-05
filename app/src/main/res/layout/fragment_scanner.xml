@@ -16,12 +16,21 @@
 
     </androidx.camera.view.PreviewView>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/sendBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/send"
-        android:layout_marginBottom="100dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/secondary"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        app:icon="@drawable/baseline_photo_camera_24"
+        app:iconSize="36dp"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="@color/primary"
         app:layout_constraintBottom_toBottomOf="@+id/cameraPv"
         app:layout_constraintEnd_toEndOf="@+id/cameraPv"
         app:layout_constraintStart_toStartOf="@+id/cameraPv" />

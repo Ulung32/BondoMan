@@ -1,5 +1,6 @@
 package com.example.bondoman
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -19,5 +20,11 @@ class ErrorPageActivity : AppCompatActivity() {
 
         binding = ActivityErrorPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.buttonBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK //clear back stack
+            startActivity(intent)
+        }
     }
 }

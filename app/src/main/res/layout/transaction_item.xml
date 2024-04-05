@@ -9,7 +9,7 @@
         android:id="@+id/transaction_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/green"
+        app:cardBackgroundColor="@color/tertiary"
         android:layout_margin="8dp"
         app:cardCornerRadius="24dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="14dp"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="16dp">
@@ -29,19 +29,33 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
                 android:text="tanggal"
+                android:textColor="@color/secondary"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/category_tv"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:text="Category"
-                android:textSize="14sp"
+                android:background="?android:attr/windowBackground"
+                android:backgroundTint="@color/secondary"
+                app:cardCornerRadius="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/category_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:padding="4dp"
+                    android:text="Category"
+                    android:textColor="@color/primary"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/title_tv"
@@ -50,6 +64,8 @@
                 android:layout_marginTop="10dp"
                 android:text="TITLE"
                 android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary50"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/date_tv" />
 
@@ -64,47 +80,56 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_tv" />
 
+
             <ImageView
                 android:id="@+id/location_drawable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/deleteTransactionButton"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/category_tv"
-                app:srcCompat="@drawable/location_icon" />
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/title_tv"
+                app:layout_constraintVertical_bias="0.391"
+                app:srcCompat="@drawable/round_location_on_24"
+                app:tint="@color/primary200" />
 
             <TextView
                 android:id="@+id/location_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp"
-                android:text="KOS SAKTIT"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
                 android:maxWidth="100dp"
                 android:maxHeight="20dp"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:ellipsize="end"
+                android:text="KOS SAKTIT"
+                android:textColor="@color/primary300"
                 app:layout_constraintBottom_toTopOf="@+id/deleteTransactionButton"
                 app:layout_constraintEnd_toStartOf="@+id/location_drawable"
-                app:layout_constraintTop_toBottomOf="@+id/category_tv"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+                app:layout_constraintVertical_bias="1.0"
                 app:layout_constraintWidth_default="wrap" />
 
-
-
-            <Button
+            <ImageButton
                 android:id="@+id/deleteTransactionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Delete"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="-12dp"
+                android:background="@null"
+                android:contentDescription="delete"
+                android:src="@drawable/round_delete_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/editTransactionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edit"
-                android:layout_marginRight="4dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="-12dp"
+                android:background="@null"
+                android:contentDescription="edit"
+                android:src="@drawable/round_edit_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/deleteTransactionButton" />
 

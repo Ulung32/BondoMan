@@ -4,6 +4,10 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.res.Configuration
+import android.content.res.Resources
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -13,15 +17,17 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 
 import androidx.navigation.NavController
 import com.example.bondoman.service.LoginService
 import com.example.bondoman.ui.NavbarFragment
 import com.example.bondoman.utils.NetworkConnectivityLiveData
 import com.example.bondoman.utils.TokenManager
+import java.lang.Error
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var navController: NavController
 
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -70,15 +76,49 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fragmentNavbar, fragment).commit()
 
         val networkConnectivityObserver = NetworkConnectivityLiveData(applicationContext)
+        Log.v("ceiruhf", networkConnectivityObserver.toString())
         val alert = findViewById<TextView>(R.id.alert_no_network)
         networkConnectivityObserver.observe(this) {
-            if(it){
+            Log.v("status", it.toString())
+            if (isOnline(applicationContext)) {
                 alert.visibility = View.GONE
-                Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show()
             } else {
                 alert.visibility = View.VISIBLE
                 Toast.makeText(this, "Not Connected", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        val navEl = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            navEl?.view?.layoutParams?.height = 800
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            navEl?.view?.layoutParams?.height = 2000
+        }
+    }
+
+    private fun isOnline(context: Context): Boolean{
+        try {
+            val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            if (capabilities != null) {
+                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
+                    return true
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
+                    return true
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
+                    return true
+                }
+            }
+            return false
+        }catch (err: Error){
+            return false
         }
     }
 }
